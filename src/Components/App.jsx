@@ -5,6 +5,7 @@ import InputArea from "./InputArea";
 function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
+  const [wasteData, setWasteData] = useState([]);
 
   function handleChange(event) {
     const newValue = event.target.value;
@@ -12,16 +13,21 @@ function App() {
   }
 
   function addItem(inputText) {
-    setItems((prevItems) => {
-      return [...prevItems, inputText];
-    });
+
+    if(inputText === ""){
+      setWasteData([...wasteData, inputText]);
+    }else{
+      setItems((prevItems) => {
+        return [...prevItems, inputText]
+    })
+    }
     setInputText("");
   }
 
   function handelKeyPress(event){
     if(event.key === "Enter"){
-      addItem(inputText);
-    }
+       addItem(inputText);
+    } 
   }
 
   function deleteItem(id) {
